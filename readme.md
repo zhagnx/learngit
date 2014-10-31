@@ -26,10 +26,12 @@ To /home/gewang/test/test/parent.git
  * [new branch]      master -> master
 ```
 
+4,创建第二个工作repo
+```
 # cd ..
-# git clone parent.git child2 # 创建第二个工作repo
-     Cloning into 'child2'...
-     done.
+# git clone parent.git child2 
+Cloning into 'child2'...
+done.
 # cd child2/
 # git checkout -b test # 创建test分支
      Switched to a new branch 'test'
@@ -37,8 +39,11 @@ To /home/gewang/test/test/parent.git
      [test c3d70fd] create test branch
       1 files changed, 1 insertions(+), 0 deletions(-)
      create mode 100644 abc
+```
 
-# git push origin test:test # 将test分支推送至服务器，注意没有加-u参数
+
+5,将test分支推送至服务器，注意没有加-u参数
+# git push origin test:test 
      Counting objects: 4, done.
      Delta compression using up to 24 threads.
      Compressing objects: 100% (2/2), done.
