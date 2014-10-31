@@ -4,6 +4,7 @@
 Initialized empty Git repository in /home/gewang/test/test/parent.git/
 ```
 2, clone出第一个工作repo
+```
 # git clone parent.git child1 
 Cloning into 'child1'...
 done.
@@ -12,15 +13,18 @@ warning: You appear to have cloned an empty repository.
 # echo a > a && git add . && git commit -m "init drop" # 第一次commit
 [master (root-commit) 985c04f] init drop
  1 files changed, 1 insertions(+), 0 deletions(-)
-     create mode 100644 a
-
-# git push origin master:master # 在server端repo中创建master分支
-     Counting objects: 3, done.
-     Writing objects: 100% (3/3), 206 bytes, done.
-     Total 3 (delta 0), reused 0 (delta 0)
-    Unpacking objects: 100% (3/3), done.
-    To /home/gewang/test/test/parent.git
-     * [new branch]      master -> master
+ create mode 100644 a
+```
+3, 在server端repo中创建master分支
+```
+# git push origin master:master 
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 206 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+To /home/gewang/test/test/parent.git
+ * [new branch]      master -> master
+```
 
 # cd ..
 # git clone parent.git child2 # 创建第二个工作repo
