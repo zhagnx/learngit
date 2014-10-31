@@ -1,11 +1,9 @@
-1, 创建一个bare repo用做clone用，相当于server端repo
+
 ```
-# git init --bare parent.git    
+# git init --bare parent.git # 创建一个bare repo用做clone用，相当于server端repo
 Initialized empty Git repository in /home/gewang/test/test/parent.git/
-```
-2, clone出第一个工作repo
-```
-# git clone parent.git child1 
+
+# git clone parent.git child1 # clone出第一个工作repo
 Cloning into 'child1'...
 done.
 warning: You appear to have cloned an empty repository.
@@ -14,57 +12,47 @@ warning: You appear to have cloned an empty repository.
 [master (root-commit) 985c04f] init drop
  1 files changed, 1 insertions(+), 0 deletions(-)
  create mode 100644 a
-```
-3, 在server端repo中创建master分支
-```
-# git push origin master:master 
+
+# git push origin master:master # 在server端repo中创建master分支
 Counting objects: 3, done.
 Writing objects: 100% (3/3), 206 bytes, done.
 Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
 To /home/gewang/test/test/parent.git
  * [new branch]      master -> master
-```
 
-4,创建第二个工作repo
-```
 # cd ..
-# git clone parent.git child2 
+# git clone parent.git child2  # 创建第二个工作repo
 Cloning into 'child2'...
 done.
 # cd child2/
 # git checkout -b test # 创建test分支
-     Switched to a new branch 'test'
+Switched to a new branch 'test'
 # echo abc >> abc && git add . && git commit -m "create test branch"
-     [test c3d70fd] create test branch
-      1 files changed, 1 insertions(+), 0 deletions(-)
-     create mode 100644 abc
-```
+[test c3d70fd] create test branch
+  1 files changed, 1 insertions(+), 0 deletions(-)
+   create mode 100644 abc
 
-
-5,将test分支推送至服务器，注意没有加-u参数
-# git push origin test:test 
-     Counting objects: 4, done.
-     Delta compression using up to 24 threads.
-     Compressing objects: 100% (2/2), done.
-     Writing objects: 100% (3/3), 268 bytes, done.
-     Total 3 (delta 0), reused 0 (delta 0)
-    Unpacking objects: 100% (3/3), done.
-    To /home/gewang/test/test/parent.git
-     * [new branch]      test -> test
+# git push origin test:test # 将test分支推送至服务器，注意没有加-u参数
+Counting objects: 4, done.
+Delta compression using up to 24 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 268 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+To /home/gewang/test/test/parent.git
+ * [new branch]      test -> test
 
 # git config -l # 查看配置，由于没有使用-u参数，所以没有test分支对应的remote, merge配置项
-     core.repositoryformatversion=0
-     core.filemode=true
-     core.bare=false
-     core.logallrefupdates=true
-     core.ignorecase=true
-     remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-                                      remote.origin.url=/home/gewang/test/test/parent.git
-                                      branch.master.remote=origin
-                                      branch.master.merge=refs/heads/master
-
-
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+remote.origin.url=/home/gewang/test/test/parent.git
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
 # cd ../child1 # 回到第一个工作repo
 # git branch
 * master
@@ -87,7 +75,7 @@ From /home/gewang/test/test/parent
 # git branch -a
 * master
   remotes/origin/master
-    remotes/origin/test
+  remotes/origin/test
 
 # git checkout test # 虽然本地没有手工创建test分支，但是可以直接checkout，同时git自动为你配置了它与server端test分支的关联。够贴心。
 Branch test set up to track remote branch test from origin.
@@ -124,28 +112,28 @@ To /home/gewang/test/test/parent.git
 # cd ../child2 # 切换到第二个工作repo，执行git pull在将server端change拿到本地后会报错，因为配置里没有关于test分支的mrege信息。（这是由于之前push test分支时没有加-u参数导致的）
 # git pull
 From /home/gewang/test/test/parent
-   985c04f..c3d70fd  master     -> origin/master
-      c3d70fd..3a078d4  test       -> origin/test
-      You asked me to pull without telling me which branch you
-      want to merge with, and 'branch.test.merge' in
-      your configuration file does not tell me, either. Please
-      specify which branch you want to use on the command line and
-      try again (e.g. 'git pull <repository> <refspec>').
-      See git-pull(1) for details.
+ 985c04f..c3d70fd  master     -> origin/master
+ c3d70fd..3a078d4  test       -> origin/test
+ You asked me to pull without telling me which branch you
+ want to merge with, and 'branch.test.merge' in
+ your configuration file does not tell me, either. Please
+ specify which branch you want to use on the command line and
+ try again (e.g. 'git pull <repository> <refspec>').
+ See git-pull(1) for details.
 
-      If you often merge with the same branch, you may want to
-      use something like the following in your configuration file:
-          [branch "test"]
-              remote = <nickname>
-                  merge = <remote-ref>
+ If you often merge with the same branch, you may want to
+ use something like the following in your configuration file:
+ [branch "test"]
+ remote = <nickname>
+ merge = <remote-ref>
 
-                      [remote "<nickname>"]
-                          url = <url>
-                              fetch = <refspec>
+ [remote "<nickname>"]
+  url = <url>
+  fetch = <refspec>
 
-                              See git-config(1) for details.
+  See git-config(1) for details.
 
-# git branch --set-upstream test origin/test # 手工配置关联
+# branch --set-upstream test origin/test # 手工配置关联
 Branch test set up to track remote branch test from origin.
 # git pull # 再次pull即可
 Updating c3d70fd..3a078d4
@@ -153,3 +141,4 @@ Fast-forward
  ddd |    1 +
   1 files changed, 1 insertions(+), 0 deletions(-)
    create mode 100644 ddd
+```
