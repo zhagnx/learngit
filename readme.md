@@ -1,9 +1,10 @@
-## 创建一个bare repo用做clone用，相当于server端repo
+1, 创建一个bare repo用做clone用，相当于server端repo
 ```
 # git init --bare parent.git    
 Initialized empty Git repository in /home/gewang/test/test/parent.git/
 ```
-# git clone parent.git child1 # clone出第一个工作repo
+2, clone出第一个工作repo
+# git clone parent.git child1 
 Cloning into 'child1'...
 done.
 warning: You appear to have cloned an empty repository.
