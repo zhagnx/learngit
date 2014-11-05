@@ -133,7 +133,7 @@ From /home/gewang/test/test/parent
 
   See git-config(1) for details.
 
-# branch --set-upstream test origin/test # 手工配置关联
+#git branch --set-upstream test origin/test # 手工配置关联
 Branch test set up to track remote branch test from origin.
 # git pull # 再次pull即可
 Updating c3d70fd..3a078d4
