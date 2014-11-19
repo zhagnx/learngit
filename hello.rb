@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts "Hello ruby!"
+3.times do 
+  puts "hello"
+end
