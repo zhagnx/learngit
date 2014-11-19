@@ -48,9 +48,9 @@ warning: You appear to have cloned an empty repository.
      core.logallrefupdates=true
      core.ignorecase=true
      remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-                                      remote.origin.url=/home/gewang/test/test/parent.git
-                                      branch.master.remote=origin
-                                      branch.master.merge=refs/heads/master
+     remote.origin.url=/home/gewang/test/test/parent.git
+     branch.master.remote=origin
+     branch.master.merge=refs/heads/master
 
 
 # cd ../child1 # 回到第一个工作repo
@@ -67,7 +67,7 @@ From /home/gewang/test/test/parent
  Fast-forward
   abc |    1 +
    1 files changed, 1 insertions(+), 0 deletions(-)
-    create mode 100644 abc
+   create mode 100644 abc
 
 # git fetch # 执行git fetch为server端test分支建立本地镜像分支
 From /home/gewang/test/test/parent
@@ -75,7 +75,7 @@ From /home/gewang/test/test/parent
 # git branch -a
 * master
   remotes/origin/master
-    remotes/origin/test
+  remotes/origin/test
 
 # git checkout test # 虽然本地没有手工创建test分支，但是可以直接checkout，同时git自动为你配置了它与server端test分支的关联。够贴心。
 Branch test set up to track remote branch test from origin.
@@ -123,15 +123,15 @@ From /home/gewang/test/test/parent
 
       If you often merge with the same branch, you may want to
       use something like the following in your configuration file:
-          [branch "test"]
-              remote = <nickname>
-                  merge = <remote-ref>
+      [branch "test"]
+      remote = <nickname>
+      merge = <remote-ref>
 
-                      [remote "<nickname>"]
-                          url = <url>
-                              fetch = <refspec>
+      [remote "<nickname>"]
+      url = <url>
+      fetch = <refspec>
 
-                              See git-config(1) for details.
+      See git-config(1) for details.
 
 # git branch --set-upstream test origin/test # 手工配置关联
 Branch test set up to track remote branch test from origin.
