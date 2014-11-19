@@ -67,7 +67,7 @@ From /home/gewang/test/test/parent
  Fast-forward
   abc |    1 +
    1 files changed, 1 insertions(+), 0 deletions(-)
-    create mode 100644 abc
+   create mode 100644 abc
 
 # git fetch # 执行git fetch为server端test分支建立本地镜像分支
 From /home/gewang/test/test/parent
@@ -108,7 +108,7 @@ Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
 To /home/gewang/test/test/parent.git
    985c04f..c3d70fd  master -> master
-      c3d70fd..3a078d4  test -> test
+   c3d70fd..3a078d4  test -> test
 # cd ../child2 # 切换到第二个工作repo，执行git pull在将server端change拿到本地后会报错，因为配置里没有关于test分支的mrege信息。（这是由于之前push test分支时没有加-u参数导致的）
 # git pull
 From /home/gewang/test/test/parent
@@ -140,5 +140,5 @@ Updating c3d70fd..3a078d4
 Fast-forward
  ddd |    1 +
   1 files changed, 1 insertions(+), 0 deletions(-)
-   create mode 100644 ddd
+  create mode 100644 ddd
 ```
